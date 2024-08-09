@@ -105,6 +105,37 @@ class ProductoAlimenticio(Producto):
     def __str__(self):
         return f"Alimenticio >> {super().__str__()} - Forma: {self.forma} - Fecha de caducidad: {self.fecha_caducidad}"
 
+class ProductoIndumentaria(Producto):
+    def __init__(self, id, nombre, precio, stock, nom_marca, talle):
+        super().__init__(id, nombre, precio, stock)
+        self.__nom_marca = nom_marca
+        self.__talle = self.validar_talle(talle)
+
+    @property
+    def nom_marca(self):
+        return self.__nom_marca
+    
+    @property
+    def talle(self):
+        return self.__talle
+    
+    def validar_talle(self, t):
+        talles_validos = ['xs', 's', 'm', 'l', 'xl', 'xxl']
+        if t not in talles_validos:
+            raise ValueError("Los talles validos son XS, S, M, L, XL o XXL ")
+        return t
+    
+    def to_dict(self):
+        data = super().to_dict()
+        data["nombre_marca"] = self.nom_marca
+        data["talle"] = self.talle
+        data["tipo"] = "Indumentaria"
+        return data
+    
+    def __str__(self):
+        return f"Indumentaria >> {super().__str__()} - Marca: {self.marca} - Talle: {self.talle}"
+
+
 class GestionProductos:
     def __init__(self, archivo):
         self.archivo = archivo

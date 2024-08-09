@@ -1,1 +1,26 @@
-{}
+{
+    "12344": {
+        "id": 12344,
+        "nombre": "Remera",
+        "precio": 12000.0,
+        "stock": 12
+    },
+    "1234443": {
+        "id": 1234443,
+        "nombre": "Camisa",
+        "precio": 45033.0,
+        "stock": 3,
+        "nombre_marca": "Givenchi",
+        "talle": "m",
+        "tipo": "Indumentaria"
+    },
+    "12": {
+        "id": 12,
+        "nombre": "Jeans",
+        "precio": 12000.0,
+        "stock": 3,
+        "nombre_marca": "Taberniti",
+        "talle": "l",
+        "tipo": "Indumentaria"
+    }
+}

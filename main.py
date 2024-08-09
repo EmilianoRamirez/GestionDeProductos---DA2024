@@ -4,6 +4,7 @@ import platform
 from clases import (
     ProductoElectronico,
     ProductoAlimenticio,
+    ProductoIndumentaria,
     GestionProductos,
 )
 
@@ -18,11 +19,12 @@ def mostrar_menu():
     print("========== Menú de Gestión de Productos ==========")
     print('1. Agregar Producto Electrónico')
     print('2. Agregar Producto Alimenticio')
-    print('3. Buscar Producto por ID')
-    print('4. Actualizar Producto')
-    print('5. Eliminar Producto por ID')
-    print('6. Mostrar Todos los Productos')
-    print('7. Salir')
+    print('3. Agregar Producto Indumentaria')
+    print('4. Buscar Producto por ID')
+    print('5. Actualizar Producto')
+    print('6. Eliminar Producto por ID')
+    print('7. Mostrar Todos los Productos')
+    print('8. Salir')
     print('==================================================')
 
 def agregar_producto(gestion, tipo_producto):
@@ -39,6 +41,10 @@ def agregar_producto(gestion, tipo_producto):
             fecha_caducidad = input('Ingrese fecha de caducidad del producto (dd/mm/aaaa): ')
             forma = input('Ingrese la forma de cobro (unidad, docena, kilo): ').lower()
             producto = ProductoAlimenticio(id, nombre, precio, cantidad, fecha_caducidad, forma)
+        elif tipo_producto == '3':
+            nom_marca = input('Ingrese nombre de la marca: ')
+            talle = input('ingrese talle (XS, S, M, L, XL, XXL): ').lower()
+            producto = ProductoIndumentaria(id, nombre, precio, cantidad, nom_marca, talle)
         else:
             print('Opción inválida')
             return
@@ -76,6 +82,8 @@ def mostrar_todos_los_productos(gestion):
                 print(f"{producto['nombre']} - Marca: {producto['marca']} - Precio: {producto['precio']}")
             elif 'forma' in producto:
                 print(f"{producto['nombre']} - Se vende por {producto['forma']} - Precio: {producto['precio']} - Caducidad: {producto['fecha_expiracion']}")
+            elif 'talle' in producto:
+                print(f"{producto['nombre']} - Marca: {producto['nombre_marca']} - Precio: {producto['precio']} - Talle: {producto['talle']}")
             else:
                 print(f"{producto['nombre']} - Precio: {producto['precio']}")
         print('================================================================')
@@ -92,22 +100,22 @@ if __name__ == "__main__":
         mostrar_menu()
         opcion = input('Seleccione una opción: ')
 
-        if opcion == '1' or opcion == '2':
+        if opcion == '1' or opcion == '2' or opcion == '3':
             agregar_producto(gestion, opcion)
         
-        elif opcion == '3':
+        elif opcion == '4':
             buscar_producto_por_id(gestion)
 
-        elif opcion == '4':
+        elif opcion == '5':
             actualizar_precio_producto(gestion)
 
-        elif opcion == '5':
+        elif opcion == '6':
             eliminar_producto_por_id(gestion)
 
-        elif opcion == '6':
+        elif opcion == '7':
             mostrar_todos_los_productos(gestion)
 
-        elif opcion == '7':
+        elif opcion == '8':
             print('Saliendo del programa...')
             break
         else:
